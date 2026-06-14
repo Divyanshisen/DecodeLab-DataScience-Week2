@@ -80,4 +80,6 @@ X_resampled, y_resampled = smote.fit_resample(X, y)
 
 ---
 
-## Repository Structure
+## Outcome
+
+This project demonstrates a complete machine learning pipeline for fraud detection, including data preprocessing, class imbalance handling using SMOTE, model training, and evaluation with a focus on recall as the key performance metric.
