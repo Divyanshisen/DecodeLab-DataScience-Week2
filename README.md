@@ -1,51 +1,46 @@
-# 🤖 DecodeLab Data Science Internship – Week 2
+# DecodeLab Data Science Internship - Week 2
 ## Credit Card Fraud Detection using Machine Learning
 
 ---
 
-## 📌 Project Overview
+## Project Overview
 
-This project is part of the **DecodeLab Data Science Internship – Week 2**.
-
-The objective is to build a machine learning model to detect fraudulent credit card transactions using the dataset `creditcard.csv`.
-
-Since the dataset is highly imbalanced, **SMOTE** is used to balance the classes before training the model.
+This repository contains my Week 2 internship submission for the DecodeLab Data Science Internship program. The project focuses on building a machine learning model to detect fraudulent credit card transactions using a real-world imbalanced dataset.
 
 ---
 
-## 📂 Dataset
+## Dataset
 
 **File:** `creditcard.csv`
 
-| Feature | Description |
-|--------|-------------|
-| V1 – V28 | Anonymized PCA features |
-| Time | Transaction time |
-| Amount | Transaction value |
-| Class | Target variable (0 = Legit, 1 = Fraud) |
+The dataset contains anonymized credit card transaction records, including:
+
+- V1 to V28 — Anonymized PCA features
+- Time — Seconds elapsed between transactions
+- Amount — Transaction value
+- Class — Target variable (0 = Legitimate, 1 = Fraud)
 
 ---
 
-## ⚠️ Problem Statement
+## Tasks Completed
 
-This is a highly imbalanced classification problem where fraud cases are very rare.  
-The goal is to correctly detect fraudulent transactions with high recall.
+**Task 1: Data Loading & Understanding**
 
----
+- Loaded the dataset using Pandas
+- Explored dataset dimensions and structure
+- Identified columns, data types, and class distribution
+- Observed severe class imbalance between fraud and legitimate transactions
 
-## 🧹 Data Preprocessing
+**Task 2: Data Preprocessing**
 
-- Loaded dataset using Pandas
-- Checked dataset structure and shape
-- No missing values found
-- Scaled `Time` and `Amount` using `StandardScaler`
-- Split features and target into `X` and `y`
+- Checked for and confirmed no missing values
+- Scaled `Time` and `Amount` features using StandardScaler
+- Separated features and target variable into X and y
 
----
+**Task 3: Handling Class Imbalance using SMOTE**
 
-## ⚖️ SMOTE – Handling Class Imbalance
-
-SMOTE was applied to balance the dataset by generating synthetic samples of the minority (fraud) class.
+- Applied SMOTE to generate synthetic samples for the minority (fraud) class
+- Balanced the dataset before model training
 
 ```python
 from imblearn.over_sampling import SMOTE
@@ -54,47 +49,29 @@ smote = SMOTE(random_state=42)
 X_resampled, y_resampled = smote.fit_resample(X, y)
 ```
 
+**Task 4: Model Building**
+
+- Split the balanced dataset into training and testing sets
+- Trained the following models:
+  - Logistic Regression
+  - Random Forest Classifier
+
+**Task 5: Model Evaluation**
+
+- Evaluated models using:
+  - Accuracy
+  - Precision
+  - Recall (critical for fraud detection)
+  - F1-Score
+  - Confusion Matrix
+
 ---
 
-## ✂️ Train-Test Split
-
-```python
-from sklearn.model_selection import train_test_split
-
-X_train, X_test, y_train, y_test = train_test_split(
-    X_resampled,
-    y_resampled,
-    test_size=0.2,
-    random_state=42,
-    stratify=y_resampled
-)
-```
-
----
-
-## 🤖 Model Building
-
-Models trained on the SMOTE-balanced dataset:
-
-- ✅ Logistic Regression
-- ✅ Random Forest Classifier
-
-
-## 📊 Evaluation Metrics
-
-| Metric | Why It Matters |
-|--------|----------------|
-| Accuracy | Overall correctness |
-| Precision | How many flagged frauds are real |
-| **Recall** | **Critical — catches actual fraud cases** |
-| F1-Score | Balance of precision and recall |
-| Confusion Matrix | Visual breakdown of predictions |
-
-
-## 🛠️ Technologies Used
+## Technologies Used
 
 - Python
-- Pandas & NumPy
+- Pandas
+- NumPy
 - Scikit-learn
 - Imbalanced-learn (SMOTE)
 - Matplotlib / Seaborn
@@ -103,4 +80,4 @@ Models trained on the SMOTE-balanced dataset:
 
 ---
 
-## 📁 Repository Structure
+## Repository Structure
